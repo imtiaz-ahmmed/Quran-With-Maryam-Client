@@ -1,46 +1,47 @@
 import { Link } from "react-router-dom";
+import logo from "../../../public/images/logo.png";
 //linear-gradient(90deg, #edf5ff, #dfefff 63%, #d7ebff);
 const NavBar = () => {
-
   const navOptions = (
     <>
       <li>
-        <Link className="text-lg text-[#111827] font-sans font-bold" to="/">
+        <Link
+          className="text-base text-[#111827] font-sans font-semibold"
+          to="/"
+        >
           QWM Home
         </Link>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-bold" to="/">
+        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
           Quran
         </Link>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-bold" to="/">
+        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
           Dua
         </Link>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-bold" to="/">
+        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
           Scheduler
         </Link>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-bold" to="/">
-         Features
+        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
+          Features
         </Link>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-bold" to="/">
-        About Us
+        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
+          About Us
         </Link>
       </li>
-      
-
     </>
   );
 
   return (
-    <div className="navbar fixed z-10 bg-[#f7f6f6] shadow-sm bg-gradient-to-r from-[#edf5ff] to-[#d7ebff]">
+    <div className="navbar fixed z-10 bg-[#f7f6f6] shadow-cyan-400 bg-gradient-to-r from-[#edf5ff] to-[#d7ebff] ">
       <div className="navbar-start">
         <div className="dropdown ml-40">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -83,12 +84,10 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <h1 className="ml-20 font-mono text-3xl font-bold text-[#111827]">Quran With Myram</h1>
+        <img className="w-56" src={logo} alt="" />
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-2 gap-6">
-          {navOptions}
-        </ul>
+        <ul className="menu menu-horizontal p-2 gap-6">{navOptions}</ul>
       </div>
       <div class="navbar-end">
         <div class="flex gap-4 mr-40">

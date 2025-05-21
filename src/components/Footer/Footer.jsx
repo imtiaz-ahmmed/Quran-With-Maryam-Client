@@ -1,5 +1,6 @@
 import img2 from "/images/play-store.png";
 import img3 from "/images/app-store.png";
+import logo from "/images/logo-t.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -14,7 +15,7 @@ const Footer = () => {
           decoding="async"
           data-nimg="1"
           class="rounded-lg"
-          src="/_next/static/media/qwm-full-logo.744e53b9.svg transparent"
+          src={logo}
         ></img>
         <p class="text-lg text-gray-600 font-medium m-0">
           Download Our Mobile App
@@ -68,12 +69,10 @@ const Footer = () => {
           Email: admin@maryamandfatima.com
         </a>
         <div className="grid grid-flow-col gap-4">
-           {/* social midia logo will add here */}
+          {/* social midia logo will add here */}
         </div>
       </nav>
-      
     </footer>
-     
   );
 };
 export default Footer;
