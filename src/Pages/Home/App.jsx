@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="pt-8 mx-32 mb-12 px-6 bg-gradient-to-r from-[#53ed83] to-[#04a6f6] grid grid-cols-2 items-center justify-center rounded-2xl ">
+    <div className="max-w-7xl mx-auto pt-8 mb-12 mt-12 px-6 bg-gradient-to-r from-[#53ed83] to-[#04a6f6] grid grid-cols-2 items-center justify-center rounded-2xl ">
       <div>
         <h2 className="text-2xl md:text-5xl text-black font-bold">
           Download our mobile app,

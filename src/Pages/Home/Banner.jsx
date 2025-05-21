@@ -30,7 +30,7 @@ const Banner = () => {
           <img
             src={img1}
             alt="Slide 1"
-            className="w-full h-full object-cover"
+            className="w-full h-[600px] object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-start pl-36 justify-center text-black w-5/12">
             <h2 className="text-2xl md:text-5xl font-bold mb-4  capitalize">
@@ -53,7 +53,7 @@ const Banner = () => {
           <img
             src={img3}
             alt="Slide 1"
-            className="w-full h-full object-cover"
+            className="w-full h-[600px] object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-start pl-36 justify-center text-white w-5/12">
             <h2 className="text-2xl md:text-5xl font-bold mb-4  ">
@@ -74,7 +74,7 @@ const Banner = () => {
           <img
             src={img2}
             alt="Slide 1"
-            className="w-full h-full object-cover"
+            className="w-full h-[600px] object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-start pl-36 justify-center text-black w-5/12">
             <h2 className="text-2xl md:text-5xl font-bold mb-4  ">
