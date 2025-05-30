@@ -6,10 +6,11 @@ import Register from "../Pages/Register/Register";
 import Features from "../Pages/Features/Features";
 import Contact from "../Pages/Contact/Contact";
 import AboutUs from "../Pages/AboutUs/AboutUs";
-import Quran from "../Pages/Quran/Quran";
+
 import Dua from "../Pages/Dua/Dua";
 import Classes from "../Pages/Classes/Classes";
 import Instructors from "../Pages/Instructors/Instructors";
+import SurahList from "../Pages/Quran/SurahList";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/quran",
-        element: <Quran></Quran>,
+        element: <SurahList></SurahList>,
       },
       {
         path: "/dua",
