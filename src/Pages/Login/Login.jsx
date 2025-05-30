@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import useTitle from "../Hooks/useTitle";
 import { AuthContext } from "../../providers/AuthProviders";
 const Login = () => {
-  useTitle("Speedy Nook | Login");
+  useTitle("QWM | Login");
   const location = useLocation();
   const { signIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -47,8 +47,9 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        //navigate(from, { replace: true });
-        navigate("/");
+        const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/";
+        localStorage.removeItem("redirectAfterLogin");
+        navigate(redirectUrl);
       })
       .catch((error) => {
         console.log(error);
