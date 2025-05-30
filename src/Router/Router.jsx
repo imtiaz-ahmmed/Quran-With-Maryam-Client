@@ -11,6 +11,7 @@ import Dua from "../Pages/Dua/Dua";
 import Classes from "../Pages/Classes/Classes";
 import Instructors from "../Pages/Instructors/Instructors";
 import SurahList from "../Pages/Quran/SurahList";
+import SurahDetails from "../Pages/Quran/SurahDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/surah/:surahNumber",
+        element: <SurahDetails></SurahDetails>,
       },
     ],
   },

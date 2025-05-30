@@ -1,22 +1,26 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../public/images/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import { Tooltip } from "react-tooltip";
+import { FaRegUser } from "react-icons/fa";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogOut = async () => {
+    await logOut();
 
-  const handleLogOut = () => {
-    logOut();
     Swal.fire({
       position: "top-end",
       icon: "success",
       title: "Log Out Successful!",
       showConfirmButton: false,
       timer: 1500,
-    }).catch((error) => console.log(error));
+    });
+
+    navigate("/");
   };
 
   const navOptions = (
@@ -177,17 +181,13 @@ const NavBar = () => {
             >
               <img
                 className="h-12 w-12 lg:h-14 lg:w-14 rounded-full object-cover"
-                src={
-                  user.photoURL
-                    ? user.photoURL
-                    : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=387&q=80"
-                }
+                src={user.photoURL ? user.photoURL : <FaRegUser />}
                 alt="User Profile"
               />
             </div>
             <button
               onClick={handleLogOut}
-              className="btn text-white bg-sky-600 hover:bg-sky-400 p-2 rounded-lg border-none"
+              className="btn btn-neutral rounded-lg bg-gradient-to-r from-[#04a6f6] to-[#53ed83]"
             >
               Logout
             </button>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="max-w-7xl mx-auto footer sm:footer-horizontal p-10">
+    <footer className=" mx-auto footer sm:footer-horizontal p-10 bg-white">
       <aside>
         <img
           alt="Quran with Maryam"
@@ -65,7 +65,7 @@ const Footer = () => {
         <h6 className="text-xl font-semibold text-[#111827]">
           Keep up with us at
         </h6>
-        <a class="text-lg text-[#525252] " href="">
+        <a className="text-lg text-[#525252] " href="">
           Email: admin@maryamandfatima.com
         </a>
         <div className="grid grid-flow-col gap-4">

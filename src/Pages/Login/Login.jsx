@@ -47,8 +47,9 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        //navigate(from, { replace: true });
-        navigate("/");
+        const redirectUrl = localStorage.getItem("redirectAfterLogin") || "/";
+        localStorage.removeItem("redirectAfterLogin");
+        navigate(redirectUrl);
       })
       .catch((error) => {
         console.log(error);
