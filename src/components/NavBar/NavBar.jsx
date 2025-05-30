@@ -1,47 +1,129 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/images/logo.png";
-//linear-gradient(90deg, #edf5ff, #dfefff 63%, #d7ebff);
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
+import { Tooltip } from "react-tooltip";
+
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut();
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Log Out Successful!",
+      showConfirmButton: false,
+      timer: 1500,
+    }).catch((error) => console.log(error));
+  };
+
   const navOptions = (
     <>
       <li>
-        <Link
-          className="text-base text-[#111827] font-sans font-semibold"
+        <NavLink
           to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-base text-blue-600 font-bold"
+              : "text-base text-[#111827] font-sans font-semibold"
+          }
         >
           QWM Home
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
+        <NavLink
+          to="/quran"
+          className={({ isActive }) =>
+            isActive
+              ? "text-base text-blue-600 font-bold"
+              : "text-base text-[#111827] font-sans font-semibold"
+          }
+        >
           Quran
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
+        <NavLink
+          to="/dua"
+          className={({ isActive }) =>
+            isActive
+              ? "text-base text-blue-600 font-bold"
+              : "text-base text-[#111827] font-sans font-semibold"
+          }
+        >
           Dua
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
-          Scheduler
-        </Link>
+        <NavLink
+          to="/all-classes"
+          className={({ isActive }) =>
+            isActive
+              ? "text-base text-blue-600 font-bold"
+              : "text-base text-[#111827] hover:font-semibold"
+          }
+        >
+          Classes
+        </NavLink>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
+        <NavLink
+          to="/all-instructors"
+          className={({ isActive }) =>
+            isActive
+              ? "text-base text-blue-600 font-bold"
+              : "text-base text-[#111827] hover:font-semibold"
+          }
+        >
+          Instructors
+        </NavLink>
+      </li>
+      {user && (
+        <li>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive
+                ? "text-base text-blue-600 font-bold"
+                : "text-base text-[#111827] hover:font-semibold"
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+      <li>
+        <NavLink
+          to="/features"
+          className={({ isActive }) =>
+            isActive
+              ? "text-base text-blue-600 font-bold"
+              : "text-base text-[#111827] hover:font-semibold"
+          }
+        >
           Features
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="text-base text-[#111827] hover:font-semibold" to="/">
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "text-base text-blue-600 font-bold"
+              : "text-base text-[#111827] hover:font-semibold"
+          }
+        >
           About Us
-        </Link>
+        </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="navbar fixed z-10 bg-[#f7f6f6] shadow-cyan-400 bg-gradient-to-r from-[#edf5ff] to-[#d7ebff] ">
+    <div className="navbar fixed z-10 bg-[#f7f6f6] shadow-cyan-400 bg-gradient-to-r from-[#edf5ff] to-[#d7ebff]">
       <div className="navbar-start">
         <div className="dropdown ml-40">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,50 +134,68 @@ const NavBar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {navOptions}
           </ul>
         </div>
-        <img className="w-56" src={logo} alt="" />
+        <img className="w-48" src={logo} alt="QWM Logo" />
       </div>
+
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-2 gap-6">{navOptions}</ul>
+        <ul className="menu menu-horizontal p-2 gap-1">{navOptions}</ul>
       </div>
-      <div class="navbar-end">
-        <div class="flex gap-4 mr-40">
-          <button class="btn btn-neutral btn-outline rounded-lg">Log in</button>
-          <button class="btn btn-neutral rounded-lg bg-gradient-to-r from-[#04a6f6] to-[#53ed83]">
-            Sign Up
-          </button>
-        </div>
+
+      <div className="navbar-end">
+        {user ? (
+          <div className="flex items-center gap-4 mr-40">
+            <div
+              className="tooltip tooltip-bottom"
+              data-tip={user.displayName || "User"}
+            >
+              <img
+                className="h-12 w-12 lg:h-14 lg:w-14 rounded-full object-cover"
+                src={
+                  user.photoURL
+                    ? user.photoURL
+                    : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=387&q=80"
+                }
+                alt="User Profile"
+              />
+            </div>
+            <button
+              onClick={handleLogOut}
+              className="btn text-white bg-sky-600 hover:bg-sky-400 p-2 rounded-lg border-none"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div className="flex gap-4 mr-40">
+            <Link
+              to="/login"
+              className="btn btn-neutral btn-outline rounded-lg"
+            >
+              Log in
+            </Link>
+            <Link
+              to="/register"
+              className="btn btn-neutral rounded-lg bg-gradient-to-r from-[#04a6f6] to-[#53ed83]"
+            >
+              Sign Up
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
