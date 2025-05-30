@@ -3,6 +3,9 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Features from "../Pages/Features/Features";
+import Contact from "../Pages/Contact/Contact";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +31,18 @@ export const router = createBrowserRouter([
       //   path: "/dua",
       //   element: <Dua></Dua>,
       // },
+      {
+        path: "/features",
+        element: <Features></Features>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs></AboutUs>,
+      },
     ],
   },
 ]);
