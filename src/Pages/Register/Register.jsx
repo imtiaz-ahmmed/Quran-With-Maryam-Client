@@ -5,7 +5,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 import useTitle from "../Hooks/useTitle";
 
 const Register = () => {
-  useTitle("Speedy Nook | Register");
+  useTitle("QWM | Register");
   const { createUser, updateUser, logOut } = useContext(AuthContext);
   const [registerError, setRegisterError] = useState("");
   const navigate = useNavigate();

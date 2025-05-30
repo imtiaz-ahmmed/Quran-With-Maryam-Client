@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import useTitle from "../Hooks/useTitle";
 import { AuthContext } from "../../providers/AuthProviders";
 const Login = () => {
-  useTitle("Speedy Nook | Login");
+  useTitle("QWM | Login");
   const location = useLocation();
   const { signIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
