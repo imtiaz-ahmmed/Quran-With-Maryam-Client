@@ -1,118 +1,244 @@
 import React, { useContext, useState } from "react";
+import { Helmet } from "react-helmet";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
+import { IoLogoGoogle, IoLogoGithub } from "react-icons/io";
 import { AuthContext } from "../../providers/AuthProviders";
-import useTitle from "../Hooks/useTitle";
-
 const Register = () => {
-  useTitle("QWM | Register");
-  const { createUser, updateUser, logOut } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const { createUser, logOut, updateUser, googleSignIn, githubLogIn } =
+    useContext(AuthContext);
+
   const [registerError, setRegisterError] = useState("");
   const navigate = useNavigate();
-
-  const handleRegister = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const photo = form.photo.value;
-    const email = form.email.value;
-    const password = form.password.value;
-
-    createUser(email, password)
-      .then(() => {
-        alert("Registration Completed Successfully");
-        updateUser(name, photo);
-        setRegisterError("");
-        logOut();
-        navigate("/login");
+  const from = location.state?.from?.pathname || "/";
+  const onSubmit = (data) => {
+    console.log(data);
+    createUser(data.email, data.password, data.photoURL).then((result) => {
+      const saveUser = {
+        name: data.name,
+        email: data.email,
+        photoURL: data.photoURL,
+      };
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
       })
-      .catch((error) => {
-        const errorMessage = error.message;
-        setRegisterError(errorMessage);
-        console.log(errorMessage);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            alert("Registration Completed Successfully");
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            updateUser(data.name, data.photoURL);
+            setRegisterError("");
+            logOut();
+            navigate("/login");
+          }
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          setRegisterError(errorMessage);
+          console.log(errorMessage);
+        });
+    });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      const saveUser = {
+        name: loggedInUser.displayName,
+        email: loggedInUser.email,
+      };
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+        });
+    });
+  };
+
+  const handleGitHubSignIn = () => {
+    githubLogIn().then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      const saveUser = {
+        name: loggedInUser.displayName,
+        email: loggedInUser.email,
+      };
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          navigate(from, { replace: true });
+        });
+    });
   };
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Register Now!</h1>
-          <p className="py-6">
-            The ultimate destination for toy car enthusiasts. Explore our
-            extensive collection of high-speed wonders and find your perfect
-            miniature ride. Start racing today!
-          </p>
-        </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleRegister} className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                placeholder="enter your name"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="enter your email"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Photo URL</span>
-              </label>
-              <input
-                type="text"
-                name="photo"
-                placeholder="enter your url"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                className="input input-bordered"
-                required
-              />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <p className="text-red-600 ">
-              <small>{registerError}</small>
+    <div>
+      <Helmet>
+        <title>QWM | Register</title>
+      </Helmet>
+      <div className="hero min-h-screen bg-base-200 pt-32">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-bold">Register now!</h1>
+            <p className="py-6 text-justify">
+              Join Quran With Maryam today! Register to embark on a
+              transformative journey towards self-discovery and holistic
+              well-being. Experience the power of Quran in a supportive and
+              uplifting community. Gain access to expert-led classes, workshops,
+              and resources to nurture your mind and soul. Illuminate your path
+              to inner peace and personal growth. Sign up now and let your
+              journey begin!
             </p>
-            <div className="form-control mt-6">
-              <button className="btn bg-green-400 hover:bg-green-500 rounded-lg border-none text-md ">
-                Register to your account
-              </button>
-            </div>
-            <small className="font-bold">
-              Already registered?
-              <Link to="/login">
-                <span className="text-blue-500"> Login </span>
-              </Link>
-            </small>
-          </form>
+          </div>
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("name", { required: true })}
+                  placeholder="Name"
+                  className="input input-bordered"
+                />
+                {errors.email && (
+                  <span className="text-red-600">Name field is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("photoURL", { required: true })}
+                  placeholder="photo URL"
+                  className="input input-bordered"
+                />
+                {errors.email && (
+                  <span className="text-red-600">
+                    Photo URL field is required
+                  </span>
+                )}
+              </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  {...register("email", { required: true })}
+                  placeholder="email"
+                  className="input input-bordered"
+                />
+                {errors.email && (
+                  <span className="text-red-600">Email field is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input
+                  type="password"
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    pattern: /(?=.*?[A-Z])(?=.*?[#?!@$%^&*-])/,
+                  })}
+                  placeholder="password"
+                  className="input input-bordered"
+                />
+                {errors.password && (
+                  <span className="text-red-600">
+                    Password field is required
+                  </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <span className="text-red-600">
+                    Password must be 6 characters
+                  </span>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <span className="text-red-600">
+                    Password must contain a special character and a capital
+                    letter
+                  </span>
+                )}
+                <p className="text-red-600 ">
+                  <small>{registerError}</small>
+                </p>
+              </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Confirm Password</span>
+                </label>
+                <input
+                  type="password"
+                  {...register("confirmPassword", {
+                    required: true,
+                    validate: (value) => value === watch("password"),
+                  })}
+                  placeholder="confirm password"
+                  className="input input-bordered"
+                />
+                {errors.confirmPassword && (
+                  <span className="text-red-600">Passwords do not match</span>
+                )}
+              </div>
+              <div className="form-control mt-6">
+                <input
+                  className="btn text-white bg-sky-600 hover:bg-sky-400 p-4 rounded-lg border-none"
+                  type="submit"
+                  value="Register"
+                />
+
+                <p className="text-sky-600 pt-4 text-center">
+                  Already registered?
+                  <Link to="/login" className="font-bold">
+                    Go to log in
+                  </Link>
+                </p>
+                <p className="pt-4 text-center">Or sign in with</p>
+                <div className="flex justify-center gap-4 p-4">
+                  <button onClick={handleGitHubSignIn}>
+                    <IoLogoGithub className="text-4xl rounded-full" />
+                  </button>
+                  <button onClick={handleGoogleSignIn}>
+                    <IoLogoGoogle className="text-4xl rounded-full" />
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

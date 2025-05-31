@@ -49,21 +49,10 @@ const NavBar = () => {
           Quran
         </NavLink>
       </li>
+
       <li>
         <NavLink
-          to="/dua"
-          className={({ isActive }) =>
-            isActive
-              ? "text-base text-blue-600 font-bold"
-              : "text-base text-[#111827] font-sans font-semibold"
-          }
-        >
-          Dua
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/classes"
+          to="/all-classes"
           className={({ isActive }) =>
             isActive
               ? "text-base text-blue-600 font-bold"
@@ -75,7 +64,7 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink
-          to="/instructors"
+          to="/all-instructors"
           className={({ isActive }) =>
             isActive
               ? "text-base text-blue-600 font-bold"
@@ -141,7 +130,7 @@ const NavBar = () => {
   return (
     <div className="navbar fixed z-10 bg-[#f7f6f6] shadow-cyan-400 bg-gradient-to-r from-[#edf5ff] to-[#d7ebff]">
       <div className="navbar-start">
-        <div className="dropdown ml-40">
+        <div className="dropdown ml-10">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +163,7 @@ const NavBar = () => {
 
       <div className="navbar-end">
         {user ? (
-          <div className="flex items-center gap-4 mr-40">
+          <div className="flex items-center gap-4 mr-10">
             <div
               className="tooltip tooltip-bottom"
               data-tip={user.displayName || "User"}
@@ -193,7 +182,7 @@ const NavBar = () => {
             </button>
           </div>
         ) : (
-          <div className="flex gap-4 mr-40">
+          <div className="flex gap-4 mr-10">
             <Link
               to="/login"
               className="btn btn-neutral btn-outline rounded-lg"
