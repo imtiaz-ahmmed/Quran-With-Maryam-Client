@@ -70,7 +70,7 @@ const Features = () => {
             <img src={image5} alt="Quran" className="w-[103px] h-[90px] border-1 border-black rounded-lg p-4" />
           </div>
           <div className="p-6">
-            <h1 className="text-black text-center text-3xl font-semibold mb-2">99 Names</h1>
+            <h1 className="text-black text-center text-3xl font-semibold mb-2">Favorite</h1>
             <p className="text-gray-700 text-base text-justify">
               Complete Quran Recitation with English Translation. Experience the
               entire Quran recited in the beautiful voices of Maryam Masud and
@@ -85,7 +85,7 @@ const Features = () => {
             <img src={image6} alt="Quran" className="w-[103px] h-[90px] border-1 border-black rounded-lg p-4" />
           </div>
           <div className="p-6">
-            <h1 className="text-black text-center text-3xl font-semibold mb-2">99 Names</h1>
+            <h1 className="text-black text-center text-3xl font-semibold mb-2">Planner</h1>
             <p className="text-gray-700 text-base text-justify">
               Complete Quran Recitation with English Translation. Experience the
               entire Quran recited in the beautiful voices of Maryam Masud and
@@ -100,7 +100,7 @@ const Features = () => {
             <img src={image7} alt="Quran" className="w-[103px] h-[90px] border-1 border-black rounded-lg p-4" />
           </div>
           <div className="p-6">
-            <h1 className="text-black text-center text-3xl font-semibold mb-2">99 Names</h1>
+            <h1 className="text-black text-center text-3xl font-semibold mb-2">Schedule</h1>
             <p className="text-gray-700 text-base text-justify">
               Complete Quran Recitation with English Translation. Experience the
               entire Quran recited in the beautiful voices of Maryam Masud and
@@ -115,7 +115,7 @@ const Features = () => {
             <img src={image8} alt="Quran" className="w-[103px] h-[90px] border-1 border-black rounded-lg p-4" />
           </div>
           <div className="p-6">
-            <h1 className="text-black text-center text-3xl font-semibold mb-2">99 Names</h1>
+            <h1 className="text-black text-center text-3xl font-semibold mb-2">Gift</h1>
             <p className="text-gray-700 text-base text-justify">
               Complete Quran Recitation with English Translation. Experience the
               entire Quran recited in the beautiful voices of Maryam Masud and
