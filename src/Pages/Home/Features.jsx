@@ -1,6 +1,6 @@
 import img1 from "/images/quran.png";
 import img2 from "/images/dua.png";
-import img3 from "/images/Allah.png";
+import img3 from "/images/name.png";
 import img4 from "/images/planner.png";
 import img5 from "/images/scheduler.png";
 import img6 from "/images/permium.png";

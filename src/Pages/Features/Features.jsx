@@ -20,7 +20,7 @@ const Features = () => {
         </div>
       </div>
       <div className="pt-20 gap-10 grid grid-cols-3 max-w-7xl mx-auto">
-        <div className=" bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-all duration-300">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-all duration-300">
           <div className="flex justify-center">
             <img src={image2} alt="Quran" className="w-[103px] h-[90px] border-1 border-black rounded-lg p-4"/>
           </div>
