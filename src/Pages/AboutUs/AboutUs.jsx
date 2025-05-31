@@ -99,7 +99,7 @@ const AboutUs = () => {
           </div>
         </div>
         <div className="bg-slate-100 rounded-2xl shadow-lg border-1 mt-10">
-          <h1 className="text-black text-center text-3xl font-semibold p-10">OUR TEAM</h1>
+          <h1 className="text-black text-center text-3xl font-semibold p-5">OUR TEAM</h1>
           <div className="flex justify-between gap-10 p-12">
             <div >
               <img className="rounded-full" src={image3} alt="" srcset="" />
